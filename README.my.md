@@ -13,12 +13,12 @@ git status
 branch is up to date with 'origin/main'.
 
 git remote -v 
-https://github.com/DaniilaSaenko/goit-js-hw-09.git (fetch) origin
+https://github.com/DaniilaSaenko/goit-js-hw-11.git (fetch) origin
 
-https://github.com/DaniilaSaenko/goit-js-hw-09.git (push)
+https://github.com/DaniilaSaenko/goit-js-hw-11.git (push)
 
 git add .
 
-git commit -m "DZ-10"
+git commit -m "DZ-11"
 
 git push -u origin main
