@@ -15,10 +15,10 @@ const { form, gallery, endSearchInfo } = refs;
 
 const imageApiService = new ImageApiService();
 
-// Add submit listener
+
 form.addEventListener('submit', onSearch);
 
-// Add global variables
+
 let shownImages = 0;
 let lightbox = {};
 
