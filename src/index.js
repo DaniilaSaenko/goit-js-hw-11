@@ -38,11 +38,10 @@ async function onSearch(event) {
   hideEndMessage();
 
   imageApiService.query = form.elements.searchQuery.value.trim();
-  if (!imageApiService.query) return;
   try {
     const data = await imageApiService.fetchQuery();
 
-    if (data.totalHits === 0) {
+    if (data.totalHits === 0 || !imageApiService.query) {
       return Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.',
         {
