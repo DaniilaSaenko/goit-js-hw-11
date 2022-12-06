@@ -9,8 +9,16 @@ export default class ImageApiService {
   async fetchQuery() {
     const BASE_URL = 'https://pixabay.com/api/';
     const KEY = '31833677-37f850fc83a2da04e94b97183';
+    const optionParam = new URLSearchParams({
+      q: this.searchQuery,
+      image_type: 'photo',
+      orientation: 'horizontal',
+      safesearch: 'true',
+      page: this.page,
+      per_page: 40,
+    });
 
-    const url = `${BASE_URL}?key=${KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`;
+    const url = `${BASE_URL}?key=${KEY}&${optionParam}`;
 
     try {
       const response = await axios.get(url);
