@@ -1,5 +1,4 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
@@ -15,9 +14,7 @@ const { form, gallery, endSearchInfo } = refs;
 
 const imageApiService = new ImageApiService();
 
-
 form.addEventListener('submit', onSearch);
-
 
 let shownImages = 0;
 let lightbox = {};
@@ -30,7 +27,7 @@ const infiniteObserver = new IntersectionObserver(
       loadMore();
     }
   },
-  { root: null, rootMargin: '50px', threshold: 0.5 },
+  { root: null, rootMargin: '50px', threshold: 0.5 }
 );
 
 async function onSearch(event) {
@@ -41,7 +38,7 @@ async function onSearch(event) {
   hideEndMessage();
 
   imageApiService.query = form.elements.searchQuery.value.trim();
-
+  if (!imageApiService.query) return;
   try {
     const data = await imageApiService.fetchQuery();
 
@@ -50,7 +47,7 @@ async function onSearch(event) {
         'Sorry, there are no images matching your search query. Please try again.',
         {
           position: 'left-top',
-        },
+        }
       );
     }
 
@@ -102,8 +99,17 @@ function addObserveOrshowEndMessage(totalHits) {
 
 function generateCardsMurkup(cardsArray) {
   return cardsArray
-    .map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
-      return `<a href="${largeImageURL}" class="photo-card">
+    .map(
+      ({
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => {
+        return `<a href="${largeImageURL}" class="photo-card">
         <img src="${webformatURL}" alt="${tags}" class="photo-card__img" width="300" loading="lazy" />
         <div class="info">
           <p class="info-item"><b>Likes</b><br />${likes}</p>
@@ -112,7 +118,8 @@ function generateCardsMurkup(cardsArray) {
           <p class="info-item"><b>Downloads</b><br />${downloads}</p>
         </div>
       </a>`;
-    })
+      }
+    )
     .join('');
 }
 
